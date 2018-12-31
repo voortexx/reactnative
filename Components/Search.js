@@ -56,7 +56,6 @@ class Search extends Component {
   }
 
   render() {
-    console.log(this.state.isLoading);
     return (
       <View style={styles.main_container}>
         <TextInput
