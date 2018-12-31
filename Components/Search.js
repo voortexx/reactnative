@@ -60,6 +60,7 @@ class Search extends Component {
           style={[styles.textinput, { marginBottom: 10 }]}
           placeholder="Chercher un joueur"
           onChangeText={text => this.searchPlayer(text)}
+          onSubmitEditing={() => this.getPlayersBySearch()}
         />
         <FlatList
           data={this.state.players}
