@@ -43,8 +43,24 @@ app.get("/", (req, res) => {
 
 app.get("/players", (req, res) => {
   connection.query(
-    `SELECT *
-      FROM players`,
+    `SELECT players.id, name,firstname,shirt_number,poste_name,photo
+      FROM players JOIN poste ON players.poste_id = poste.id`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(result);
+      }
+    }
+  );
+});
+
+app.get("/search/:request", (req, res) => {
+  const search = req.params.request;
+  connection.query(
+    `SELECT players.id, name,firstname,shirt_number,poste_name,photo
+      FROM players JOIN poste ON players.poste_id = poste.id WHERE name LIKE "%${search}%"`,
     (err, result) => {
       if (err) {
         console.log(err);
