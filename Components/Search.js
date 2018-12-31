@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  Button,
-  Text,
   TextInput,
-  FlatList
+  FlatList,
+  ActivityIndicator
 } from "react-native";
 import axios from "axios";
 import Player from "./Player";
@@ -13,9 +12,10 @@ import Player from "./Player";
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { players: [], search: "" };
+    this.state = { players: [], search: "", isLoading: false };
   }
   componentDidMount() {
+    this.setState({ isLoading: true });
     axios
       .get(`http://192.168.1.23:3001/players`, {
         headers: {
@@ -23,7 +23,7 @@ class Search extends Component {
         }
       })
       .then(res => {
-        this.setState({ players: res.data });
+        this.setState({ players: res.data, isLoading: false });
       });
   }
 
@@ -33,27 +33,30 @@ class Search extends Component {
 
   getPlayersBySearch() {
     this.state.search.length > 0
-      ? axios
+      ? (this.setState({ isLoading: true }),
+        axios
           .get(`http://192.168.1.23:3001/search/${this.state.search}`, {
             headers: {
               accept: "application/json"
             }
           })
           .then(res => {
-            this.setState({ players: res.data });
-          })
-      : axios
+            this.setState({ players: res.data, isLoading: false });
+          }))
+      : (this.setState({ isLoading: true }),
+        axios
           .get(`http://192.168.1.23:3001/players`, {
             headers: {
               accept: "application/json"
             }
           })
           .then(res => {
-            this.setState({ players: res.data });
-          });
+            this.setState({ players: res.data, isLoading: false });
+          }));
   }
 
   render() {
+    console.log(this.state.isLoading);
     return (
       <View style={styles.main_container}>
         <TextInput
@@ -67,6 +70,11 @@ class Search extends Component {
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => <Player player={item} />}
         />
+        {this.state.isLoading ? (
+          <View style={styles.loading_container}>
+            <ActivityIndicator size="large" />
+          </View>
+        ) : null}
       </View>
     );
   }
@@ -84,6 +92,15 @@ const styles = StyleSheet.create({
     borderColor: "#000000",
     borderWidth: 1,
     paddingLeft: 5
+  },
+  loading_container: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 100,
+    bottom: 0,
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
 
