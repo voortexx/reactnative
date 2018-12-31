@@ -1,18 +1,22 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import Search from "./Components/Search";
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import Home from "./Components/Home";
+import PlayerDetail from "./Components/PlayerDetail";
 
-export default class App extends React.Component {
-  render() {
-    return <Search />;
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+const RootStack = createStackNavigator({
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      title: "Accueil"
+    }
+  },
+  PlayerDetail: {
+    screen: PlayerDetail,
+    navigationOptions: {
+      title: "Détail"
+    }
   }
 });
+
+const App = createAppContainer(RootStack);
+
+export default App;

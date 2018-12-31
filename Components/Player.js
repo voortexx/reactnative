@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import images from "../Helpers/avatars";
 
 class Player extends Component {
   render() {
-    const player = this.props.player;
+    console.log(this.props.navigation);
+    const { player, getPlayerDetail } = this.props;
 
     return (
-      <View style={styles.main_container}>
+      <TouchableOpacity
+        style={styles.main_container}
+        onPress={() => getPlayerDetail(player.id)}
+      >
         <Image style={styles.image} source={images[player.photo]} />
         <View style={styles.content_container}>
           <View style={styles.player_identity_container}>
@@ -19,7 +23,7 @@ class Player extends Component {
             <Text style={styles.shirt_number_text}>{player.shirt_number}</Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

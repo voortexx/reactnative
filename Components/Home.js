@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import Player from "./Player";
 
-class Search extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = { players: [], search: "", isLoading: false };
@@ -55,7 +55,13 @@ class Search extends Component {
           }));
   }
 
+  getPlayerDetail(idPlayer) {
+    console.log(idPlayer);
+    this.props.navigation.navigate("PlayerDetail", { idPlayer: idPlayer });
+  }
+
   render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.main_container}>
         <TextInput
@@ -67,7 +73,13 @@ class Search extends Component {
         <FlatList
           data={this.state.players}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Player player={item} />}
+          renderItem={({ item }) => (
+            <Player
+              player={item}
+              getPlayerDetail={this.getPlayerDetail}
+              navigation={navigation}
+            />
+          )}
         />
         {this.state.isLoading ? (
           <View style={styles.loading_container}>
@@ -81,8 +93,7 @@ class Search extends Component {
 
 const styles = StyleSheet.create({
   main_container: {
-    flex: 1,
-    marginTop: 30
+    flex: 1
   },
   textinput: {
     marginLeft: 5,
@@ -103,4 +114,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Search;
+export default Home;
