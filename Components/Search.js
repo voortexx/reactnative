@@ -61,11 +61,6 @@ class Search extends Component {
           placeholder="Chercher un joueur"
           onChangeText={text => this.searchPlayer(text)}
         />
-        <Button
-          style={{ height: 50 }}
-          title="Rechercher"
-          onPress={() => this._loadFilms()}
-        />
         <FlatList
           data={this.state.players}
           keyExtractor={item => item.id.toString()}
