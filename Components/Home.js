@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "./Logo";
-import { StyleSheet, View, Linking, Text, FlatList } from "react-native";
+import { StyleSheet, View, Linking, Text } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 class Home extends React.Component {
@@ -10,7 +10,7 @@ class Home extends React.Component {
         <View
           style={{ flex: 6, alignItems: "center", justifyContent: "center" }}
         >
-          <Logo />
+          <Logo height={250} width={250} />
         </View>
 
         <View

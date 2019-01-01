@@ -35,6 +35,15 @@ const MatchesStack = createStackNavigator({
   }
 });
 
+const ClubStack = createStackNavigator({
+  Infos: {
+    screen: Infos,
+    navigationOptions: {
+      title: "The Club"
+    }
+  }
+});
+
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
@@ -47,7 +56,7 @@ const TabNavigator = createBottomTabNavigator(
       screen: MatchesStack
     },
     Infos: {
-      screen: Infos
+      screen: ClubStack
     }
   },
   {

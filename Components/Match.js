@@ -39,7 +39,7 @@ class Match extends Component {
               flexDirection: "row",
               flex: 3,
               justifyContent: "center",
-              backgroundColor: "#FF0000",
+              backgroundColor: "#201f76",
               margin: 5
             }}
           >

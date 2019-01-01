@@ -85,18 +85,21 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
     flexWrap: "wrap",
-    paddingRight: 5
+    paddingRight: 5,
+    color: "#201f76"
   },
   firstname_text: {
     fontSize: 20,
     flexWrap: "wrap",
-    paddingRight: 5
+    paddingRight: 5,
+    color: "#201f76"
   },
 
   poste_text: {
     fontSize: 14,
     paddingRight: 5,
-    marginTop: 5
+    marginTop: 5,
+    color: "#201f76"
   },
   shirt_number_container: {
     flex: 3,

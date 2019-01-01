@@ -1,8 +1,8 @@
 import React from "react";
 import { Svg } from "expo";
 
-const Logo = () => (
-  <Svg height={250} width={250} viewBox="0 0 322.793 379.84">
+const Logo = props => (
+  <Svg height={props.height} width={props.width} viewBox="0 0 322.793 379.84">
     <Svg.Path
       fill="#9C824A"
       stroke="#9C824A"

@@ -15,10 +15,14 @@ class Matches extends React.Component {
     this.state = { matches: [], isLoading: false, status: "FINISHED" };
   }
   componentDidMount() {
+    this.getMatches(this.state.status);
+  }
+
+  getMatches(status) {
     this.setState({ isLoading: true });
     axios
       .get(
-        `https://api.football-data.org//v2/teams/57/matches?status=FINISHED`,
+        `https://api.football-data.org//v2/teams/57/matches?status=${status}`,
         {
           headers: {
             accept: "application/json",
@@ -30,19 +34,44 @@ class Matches extends React.Component {
         this.setState({ isLoading: false, matches: res.data.matches });
       });
   }
+
+  switchStatus(status) {
+    this.setState({ status: status }, this.getMatches(status));
+  }
   render() {
     return (
       <View style={styles.main_container}>
-        <FlatList
-          data={this.state.matches}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Match match={item} />}
-        />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            marginTop: 20
+          }}
+        >
+          <Button
+            color={this.state.status === "FINISHED" ? "#FF0000" : "#dcdcdc"}
+            title="Results"
+            onPress={() => this.switchStatus("FINISHED")}
+          />
+          <Button
+            color={this.state.status === "SCHEDULED" ? "#FF0000" : "#dcdcdc"}
+            title="Fixtures"
+            onPress={() => this.switchStatus("SCHEDULED")}
+          />
+        </View>
         {this.state.isLoading ? (
           <View style={styles.loading_container}>
             <ActivityIndicator size="large" />
           </View>
-        ) : null}
+        ) : (
+          <View>
+            <FlatList
+              data={this.state.matches}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({ item }) => <Match match={item} />}
+            />
+          </View>
+        )}
       </View>
     );
   }
@@ -50,14 +79,14 @@ class Matches extends React.Component {
 
 const styles = StyleSheet.create({
   main_container: {
-    marginTop: 20,
-    flex: 1
+    flex: 1,
+    flexDirection: "column"
   },
   loading_container: {
     position: "absolute",
     left: 0,
     right: 0,
-    top: 300,
+    top: 50,
     bottom: 0,
     alignItems: "center",
     justifyContent: "center"
