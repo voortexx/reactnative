@@ -11,7 +11,7 @@ import Results from "./Components/Results";
 import Infos from "./Components/Infos";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const RootStack = createStackNavigator({
+const EffectifStack = createStackNavigator({
   Effectif: {
     screen: Effectif,
     navigationOptions: {
@@ -26,16 +26,25 @@ const RootStack = createStackNavigator({
   }
 });
 
+const ResultsStack = createStackNavigator({
+  Results: {
+    screen: Results,
+    navigationOptions: {
+      title: "Résultats"
+    }
+  }
+});
+
 const TabNavigator = createBottomTabNavigator(
   {
     Accueil: {
       screen: Home
     },
     Effectif: {
-      screen: RootStack
+      screen: EffectifStack
     },
     Résultats: {
-      screen: Results
+      screen: ResultsStack
     },
     Infos: {
       screen: Infos
