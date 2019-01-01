@@ -1,9 +1,14 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import Logo from "./Logo";
+import { StyleSheet, View } from "react-native";
 
 class Home extends React.Component {
   render() {
-    return <Text>Accueil</Text>;
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Logo />
+      </View>
+    );
   }
 }
 
