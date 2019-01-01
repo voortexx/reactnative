@@ -211,6 +211,21 @@ class Infos extends React.Component {
             Cup Winners' Cup and one Inter-Cities Fairs Cup.
           </Text>
         </View>
+        <View
+          style={{
+            margin: 20,
+            marginTop: 0,
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <Image
+            style={{ flex: 1, height: 80, width: 300 }}
+            source={require("../Images/arsenal_cover.jpg")}
+            resizeMode="cover"
+          />
+        </View>
         {this.state.isLoading ? (
           <View style={styles.loading_container}>
             <ActivityIndicator size="large" />

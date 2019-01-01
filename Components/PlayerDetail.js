@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   content_container: {
     flex: 1,
     flexDirection: "row",
-    margin: 5
+    margin: 10
   },
   player_identity_container: {
     flex: 3,
