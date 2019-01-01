@@ -1,31 +1,36 @@
 import React from "react";
-import { StyleSheet, FlatList, View, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  FlatList,
+  View,
+  ActivityIndicator,
+  Button
+} from "react-native";
 import axios from "axios";
 import Match from "./Match";
 
-class Results extends React.Component {
+class Matches extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { matches: [], isLoading: false };
+    this.state = { matches: [], isLoading: false, status: "FINISHED" };
   }
   componentDidMount() {
     this.setState({ isLoading: true });
     axios
-      .get(`https://api.football-data.org//v2/teams/57/matches`, {
-        headers: {
-          accept: "application/json",
-          "X-Auth-Token": "2dcfa7491ad84f4ea493fef5f02de9fb"
+      .get(
+        `https://api.football-data.org//v2/teams/57/matches?status=FINISHED`,
+        {
+          headers: {
+            accept: "application/json",
+            "X-Auth-Token": "2dcfa7491ad84f4ea493fef5f02de9fb"
+          }
         }
-      })
+      )
       .then(res => {
         this.setState({ isLoading: false, matches: res.data.matches });
       });
   }
   render() {
-    this.state.matches[0]
-      ? console.log(this.state.matches[0].awayTeam.name)
-      : "not receive";
-
     return (
       <View style={styles.main_container}>
         <FlatList
@@ -59,4 +64,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Results;
+export default Matches;
