@@ -4,13 +4,16 @@ import images from "../Helpers/avatars";
 
 class Player extends Component {
   render() {
-    console.log(this.props.navigation);
-    const { player, getPlayerDetail } = this.props;
+    const player = this.props.player;
 
     return (
       <TouchableOpacity
         style={styles.main_container}
-        onPress={() => getPlayerDetail(player.id)}
+        onPress={() =>
+          this.props.navigation.navigate("PlayerDetail", {
+            playerId: player.id
+          })
+        }
       >
         <Image style={styles.image} source={images[player.photo]} />
         <View style={styles.content_container}>

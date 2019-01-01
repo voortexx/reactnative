@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import Player from "./Player";
 
-class Home extends Component {
+class Effectif extends Component {
   constructor(props) {
     super(props);
     this.state = { players: [], search: "", isLoading: false };
@@ -55,11 +55,6 @@ class Home extends Component {
           }));
   }
 
-  getPlayerDetail(idPlayer) {
-    console.log(idPlayer);
-    this.props.navigation.navigate("PlayerDetail", { idPlayer: idPlayer });
-  }
-
   render() {
     const { navigation } = this.props;
     return (
@@ -74,11 +69,7 @@ class Home extends Component {
           data={this.state.players}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
-            <Player
-              player={item}
-              getPlayerDetail={this.getPlayerDetail}
-              navigation={navigation}
-            />
+            <Player player={item} navigation={navigation} />
           )}
         />
         {this.state.isLoading ? (
@@ -114,4 +105,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home;
+export default Effectif;

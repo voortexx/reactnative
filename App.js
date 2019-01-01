@@ -1,12 +1,12 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import Home from "./Components/Home";
+import Effectif from "./Components/Effectif";
 import PlayerDetail from "./Components/PlayerDetail";
 
 const RootStack = createStackNavigator({
-  Home: {
-    screen: Home,
+  Effectif: {
+    screen: Effectif,
     navigationOptions: {
-      title: "Accueil"
+      title: "Effectif"
     }
   },
   PlayerDetail: {
