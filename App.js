@@ -4,10 +4,11 @@ import {
   createAppContainer,
   createBottomTabNavigator
 } from "react-navigation";
-import { Image, StyleSheet } from "react-native";
+import Home from "./Components/Home";
 import Effectif from "./Components/Effectif";
 import PlayerDetail from "./Components/PlayerDetail";
 import Results from "./Components/Results";
+import Infos from "./Components/Infos";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const RootStack = createStackNavigator({
@@ -27,32 +28,46 @@ const RootStack = createStackNavigator({
 
 const TabNavigator = createBottomTabNavigator(
   {
+    Accueil: {
+      screen: Home
+    },
     Effectif: {
-      screen: RootStack,
-      navigationOptions: {
-        tabBarIcon: () => {
-          return (
-            //ios-information-circle
-            <Ionicons name="md-person" size={32} />
-          );
-        }
-      }
+      screen: RootStack
     },
     Résultats: {
-      screen: Results,
-      navigationOptions: {
-        tabBarIcon: () => {
-          return <Ionicons name="md-list" size={32} />;
-        }
-      }
+      screen: Results
+    },
+    Infos: {
+      screen: Infos
     }
   },
   {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === "Accueil") {
+          iconName = `md-home`;
+        } else if (routeName === "Effectif") {
+          iconName = `md-person`;
+        } else if (routeName === "Résultats") {
+          iconName = `md-list`;
+        } else if (routeName === "Infos") {
+          iconName = `ios-information-circle`;
+        }
+
+        return (
+          <Ionicons
+            name={iconName}
+            size={horizontal ? 20 : 25}
+            color={tintColor}
+          />
+        );
+      }
+    }),
     tabBarOptions: {
-      activeBackgroundColor: "#FF0000",
-      activeTintColor: "#fff",
-      inactiveBackgroundColor: "#FFFFFF",
-      showIcon: true
+      activeTintColor: "#FF0000",
+      inactiveTintColor: "gray"
     }
   }
 );
