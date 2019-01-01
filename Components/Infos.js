@@ -5,7 +5,8 @@ import {
   Text,
   TouchableHighlight,
   ActivityIndicator,
-  Linking
+  Linking,
+  Image
 } from "react-native";
 import Logo from "./Logo";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -155,15 +156,60 @@ class Infos extends React.Component {
             </View>
           </View>
         </View>
+
         <View
           style={{
             margin: 20,
             paddingTop: 20,
             borderTopWidth: 3,
-            borderTopColor: "#201F76"
+            borderTopColor: "#201F76",
+            flexDirection: "row"
           }}
         >
-          <Text>Description</Text>
+          <Image
+            style={{ flex: 1, height: 100, width: 150, marginRight: 10 }}
+            source={require("../Images/stadium.jpg")}
+            resizeMode="cover"
+          />
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontWeight: "bold", color: "#201F76" }}>
+              <Ionicons
+                name="md-calendar"
+                style={{ fontSize: 20, color: "#201F76" }}
+              />{" "}
+              Founded :
+              <Text style={{ fontWeight: "normal" }}>
+                {" "}
+                {this.state.infos.founded}
+              </Text>
+            </Text>
+            <Text style={{ fontWeight: "bold", color: "#201F76" }}>
+              <Ionicons
+                name="md-pin"
+                style={{ fontSize: 20, color: "#201F76" }}
+              />{" "}
+              {this.state.infos.venue}
+              <Text style={{ fontWeight: "normal" }}>
+                {" "}
+                {this.state.infos.address}
+              </Text>
+            </Text>
+          </View>
+        </View>
+        <View
+          style={{
+            margin: 20,
+            paddingTop: 20,
+            borderTopWidth: 3,
+            borderTopColor: "#201F76",
+            flexDirection: "row"
+          }}
+        >
+          <Text style={{ color: "#201F76" }}>
+            The club has won 13 League titles, a record 13 FA Cups, two League
+            Cups, the League Centenary Trophy, 15 FA Community Shields, one UEFA
+            Cup Winners' Cup and one Inter-Cities Fairs Cup.
+          </Text>
         </View>
         {this.state.isLoading ? (
           <View style={styles.loading_container}>
