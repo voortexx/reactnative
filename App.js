@@ -15,13 +15,13 @@ const EffectifStack = createStackNavigator({
   Effectif: {
     screen: Effectif,
     navigationOptions: {
-      title: "Effectif"
+      title: "Squad"
     }
   },
   PlayerDetail: {
     screen: PlayerDetail,
     navigationOptions: {
-      title: "Détail du joueur"
+      title: "Player Detail"
     }
   }
 });
@@ -30,20 +30,20 @@ const ResultsStack = createStackNavigator({
   Results: {
     screen: Results,
     navigationOptions: {
-      title: "Résultats"
+      title: "Results"
     }
   }
 });
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Accueil: {
+    Home: {
       screen: Home
     },
-    Effectif: {
+    Squad: {
       screen: EffectifStack
     },
-    Résultats: {
+    Results: {
       screen: ResultsStack
     },
     Infos: {
@@ -55,11 +55,11 @@ const TabNavigator = createBottomTabNavigator(
       tabBarIcon: ({ horizontal, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
-        if (routeName === "Accueil") {
+        if (routeName === "Home") {
           iconName = `md-home`;
-        } else if (routeName === "Effectif") {
+        } else if (routeName === "Squad") {
           iconName = `md-person`;
-        } else if (routeName === "Résultats") {
+        } else if (routeName === "Results") {
           iconName = `md-list`;
         } else if (routeName === "Infos") {
           iconName = `ios-information-circle`;

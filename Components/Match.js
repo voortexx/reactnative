@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
+import formatDate from "../Helpers/formatDate";
 
 class Match extends Component {
   render() {
@@ -14,7 +15,7 @@ class Match extends Component {
             justifyContent: "space-between"
           }}
         >
-          <Text>{match.utcDate}</Text>
+          <Text>{formatDate(match.utcDate)}</Text>
         </View>
         <View
           style={{

@@ -61,7 +61,7 @@ class Effectif extends Component {
       <View style={styles.main_container}>
         <TextInput
           style={[styles.textinput, { marginBottom: 10 }]}
-          placeholder="Chercher un joueur"
+          placeholder="Search a player"
           onChangeText={text => this.searchPlayer(text)}
           onSubmitEditing={() => this.getPlayersBySearch()}
         />
