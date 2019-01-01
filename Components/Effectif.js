@@ -68,7 +68,9 @@ class Effectif extends Component {
         <FlatList
           data={this.state.players}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Player player={item} />}
+          renderItem={({ item }) => (
+            <Player player={item} navigation={navigation} />
+          )}
         />
         {this.state.isLoading ? (
           <View style={styles.loading_container}>
