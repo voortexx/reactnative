@@ -56,6 +56,22 @@ app.get("/players", (req, res) => {
   );
 });
 
+app.get("/players/:id", (req, res) => {
+  const playerId = req.params.id;
+  connection.query(
+    `SELECT players.id, name,firstname,shirt_number,poste_name,photo
+      FROM players JOIN poste ON players.poste_id = poste.id WHERE players.id = ${playerId}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      } else {
+        res.status(200).json(result);
+      }
+    }
+  );
+});
+
 app.get("/search/:request", (req, res) => {
   const search = req.params.request;
   connection.query(

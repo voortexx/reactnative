@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ImageBackground
+} from "react-native";
 import images from "../Helpers/avatars";
 
 class Player extends Component {
@@ -15,17 +22,24 @@ class Player extends Component {
           })
         }
       >
-        <Image style={styles.image} source={images[player.photo]} />
-        <View style={styles.content_container}>
-          <View style={styles.player_identity_container}>
-            <Text style={styles.name_text}>{player.name}</Text>
-            <Text style={styles.firstname_text}>{player.firstname}</Text>
-            <Text style={styles.poste_text}>{player.poste_name}</Text>
+        <ImageBackground
+          source={require("../Images/bg_player.png")}
+          style={{ width: "100%", height: "100%", flexDirection: "row" }}
+        >
+          <Image style={styles.image} source={images[player.photo]} />
+          <View style={styles.content_container}>
+            <View style={styles.player_identity_container}>
+              <Text style={styles.name_text}>{player.name}</Text>
+              <Text style={styles.firstname_text}>{player.firstname}</Text>
+              <Text style={styles.poste_text}>{player.poste_name}</Text>
+            </View>
+            <View style={styles.shirt_number_container}>
+              <Text style={styles.shirt_number_text}>
+                {player.shirt_number}
+              </Text>
+            </View>
           </View>
-          <View style={styles.shirt_number_container}>
-            <Text style={styles.shirt_number_text}>{player.shirt_number}</Text>
-          </View>
-        </View>
+        </ImageBackground>
       </TouchableOpacity>
     );
   }
@@ -33,14 +47,14 @@ class Player extends Component {
 
 const styles = StyleSheet.create({
   main_container: {
-    height: 130,
-    flexDirection: "row"
+    height: 120,
+    flexDirection: "row",
+    backgroundColor: "#eaeaea",
+    marginBottom: 20
   },
   image: {
     width: 120,
-    height: 120,
-    margin: 5,
-    backgroundColor: "gray"
+    height: 120
   },
   content_container: {
     flex: 1,
@@ -76,7 +90,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 50,
     textAlign: "right",
-    color: "#666666"
+    color: "#FF0000"
   }
 });
 
