@@ -15,7 +15,9 @@ class Match extends Component {
             justifyContent: "space-between"
           }}
         >
-          <Text>{formatDate(match.utcDate)}</Text>
+          <Text style={{ fontWeight: "bold" }}>
+            {formatDate(match.utcDate)}
+          </Text>
         </View>
         <View
           style={{
@@ -27,18 +29,31 @@ class Match extends Component {
             borderBottomWidth: 1
           }}
         >
-          <View style={{ flex: 6, textAlign: "right" }}>
-            <Text style={{ textAlign: "right" }}>{match.homeTeam.name} </Text>
+          <View style={{ flex: 6, textAlign: "right", margin: 5 }}>
+            <Text numberOfLines={1} style={{ textAlign: "right" }}>
+              {match.homeTeam.name}
+            </Text>
           </View>
           <View
-            style={{ flexDirection: "row", flex: 3, justifyContent: "center" }}
+            style={{
+              flexDirection: "row",
+              flex: 3,
+              justifyContent: "center",
+              backgroundColor: "#FF0000",
+              margin: 5
+            }}
           >
-            <Text>{match.score.fullTime.homeTeam}</Text>
-            <Text> - </Text>
-            <Text> {match.score.fullTime.awayTeam}</Text>
+            <Text style={{ color: "#fff" }}>
+              {match.score.fullTime.homeTeam}
+            </Text>
+            <Text style={{ color: "#fff" }}> - </Text>
+            <Text style={{ color: "#fff" }}>
+              {" "}
+              {match.score.fullTime.awayTeam}
+            </Text>
           </View>
-          <View style={{ flex: 6 }}>
-            <Text>{match.awayTeam.name}</Text>
+          <View style={{ flex: 6, margin: 5 }}>
+            <Text numberOfLines={1}>{match.awayTeam.name}</Text>
           </View>
         </View>
       </View>
