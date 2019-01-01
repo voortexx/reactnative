@@ -199,10 +199,10 @@ class Infos extends React.Component {
         <View
           style={{
             margin: 20,
+            marginTop: 0,
             paddingTop: 20,
             borderTopWidth: 3,
-            borderTopColor: "#201F76",
-            flexDirection: "row"
+            borderTopColor: "#201F76"
           }}
         >
           <Text style={{ color: "#201F76" }}>
