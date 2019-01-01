@@ -6,13 +6,40 @@ class Match extends Component {
     const match = this.props.match;
 
     return (
-      <View>
-        <Text>{match.competition.name}</Text>
-        <Text>{match.utcDate}</Text>
-        <Text>{match.homeTeam.name}</Text>
-        <Text>{match.score.fullTime.homeTeam}</Text>
-        <Text>{match.awayTeam.name}</Text>
-        <Text>{match.score.fullTime.awayTeam}</Text>
+      <View style={{ flex: 1, flexDirection: "column", margin: 10 }}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-between"
+          }}
+        >
+          <Text>{match.utcDate}</Text>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "center",
+            borderColor: "#dcdcdc",
+            borderTopWidth: 1,
+            borderBottomWidth: 1
+          }}
+        >
+          <View style={{ flex: 6, textAlign: "right" }}>
+            <Text style={{ textAlign: "right" }}>{match.homeTeam.name} </Text>
+          </View>
+          <View
+            style={{ flexDirection: "row", flex: 3, justifyContent: "center" }}
+          >
+            <Text>{match.score.fullTime.homeTeam}</Text>
+            <Text> - </Text>
+            <Text> {match.score.fullTime.awayTeam}</Text>
+          </View>
+          <View style={{ flex: 6 }}>
+            <Text>{match.awayTeam.name}</Text>
+          </View>
+        </View>
       </View>
     );
   }
