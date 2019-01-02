@@ -122,6 +122,7 @@ class Ranking extends React.Component {
                         key={index}
                         style={[
                           index % 2 == 0 && styles.even,
+                          club.team.name === "Arsenal FC" && styles.gunners,
                           {
                             flexDirection: "row",
                             flex: 1,
@@ -133,6 +134,7 @@ class Ranking extends React.Component {
                       >
                         <Text
                           style={[
+                            club.team.name === "Arsenal FC" && styles.gunners,
                             styles.column,
                             styles.bold,
                             { marginLeft: 5 }
@@ -142,28 +144,67 @@ class Ranking extends React.Component {
                         </Text>
                         <Text
                           numberOfLines={1}
-                          style={[styles.column, { flex: 5 }]}
+                          style={[
+                            club.team.name === "Arsenal FC" && styles.gunners,
+                            styles.column,
+                            { flex: 5 }
+                          ]}
                         >
                           {club.team.name}
                         </Text>
                         <Text
-                          style={[styles.column, styles.center, styles.bold]}
+                          style={[
+                            club.team.name === "Arsenal FC" && styles.gunners,
+                            styles.column,
+                            styles.center,
+                            styles.bold
+                          ]}
                         >
                           {club.points}
                         </Text>
-                        <Text style={[styles.column, styles.center]}>
+                        <Text
+                          style={[
+                            club.team.name === "Arsenal FC" && styles.gunners,
+                            styles.column,
+                            styles.center
+                          ]}
+                        >
                           {club.playedGames}
                         </Text>
-                        <Text style={[styles.column, styles.center]}>
+                        <Text
+                          style={[
+                            club.team.name === "Arsenal FC" && styles.gunners,
+                            styles.column,
+                            styles.center
+                          ]}
+                        >
                           {club.won}
                         </Text>
-                        <Text style={[styles.column, styles.center]}>
+                        <Text
+                          style={[
+                            club.team.name === "Arsenal FC" && styles.gunners,
+                            styles.column,
+                            styles.center
+                          ]}
+                        >
                           {club.draw}
                         </Text>
-                        <Text style={[styles.column, styles.center]}>
+                        <Text
+                          style={[
+                            club.team.name === "Arsenal FC" && styles.gunners,
+                            styles.column,
+                            styles.center
+                          ]}
+                        >
                           {club.lost}
                         </Text>
-                        <Text style={[styles.column, styles.center]}>
+                        <Text
+                          style={[
+                            club.team.name === "Arsenal FC" && styles.gunners,
+                            styles.column,
+                            styles.center
+                          ]}
+                        >
                           {club.goalDifference}
                         </Text>
                       </View>
@@ -208,7 +249,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   center: { textAlign: "center" },
-  even: { backgroundColor: "white" }
+  even: { backgroundColor: "white" },
+  gunners: { backgroundColor: "#FF0000", color: "#fff" }
 });
 
 export default Ranking;
