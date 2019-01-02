@@ -50,9 +50,20 @@ class Ranking extends React.Component {
                   margin: 10
                 }}
               >
-                <Text style={{ fontWeight: "bold", color: "#201F76" }}>
-                  Matchweek {this.state.ranking.season.currentMatchday}
-                </Text>
+                <View>
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                      color: "#201F76"
+                    }}
+                  >
+                    Season {this.state.ranking.season.startDate.split("-")[0]} -{" "}
+                    {this.state.ranking.season.endDate.split("-")[0]}
+                  </Text>
+                  <Text style={{ fontWeight: "bold", color: "#201F76" }}>
+                    Matchweek {this.state.ranking.season.currentMatchday}
+                  </Text>
+                </View>
                 <Image
                   style={{ height: 50, width: 150 }}
                   source={require("../Images/premierleague_logo.png")}
@@ -135,7 +146,9 @@ class Ranking extends React.Component {
                         >
                           {club.team.name}
                         </Text>
-                        <Text style={[styles.column, styles.center]}>
+                        <Text
+                          style={[styles.column, styles.center, styles.bold]}
+                        >
                           {club.points}
                         </Text>
                         <Text style={[styles.column, styles.center]}>
