@@ -5,7 +5,8 @@ import {
   Text,
   View,
   ActivityIndicator,
-  ImageBackground
+  ImageBackground,
+  Image
 } from "react-native";
 import axios from "axios";
 
@@ -40,20 +41,30 @@ class Ranking extends React.Component {
           source={require("../Images/bg_player.png")}
           style={{ width: "100%", height: "100%", flexDirection: "column" }}
         >
+          {this.state.ranking.competition && (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                margin: 10
+              }}
+            >
+              <Text style={{ fontWeight: "bold", color: "#201F76" }}>
+                Matchweek {this.state.ranking.season.currentMatchday}
+              </Text>
+              <Image
+                style={{ height: 50, width: 150 }}
+                source={require("../Images/premierleague_logo.png")}
+                resizeMode="contain"
+              />
+            </View>
+          )}
           {this.state.isLoading ? (
             <View style={styles.loading_container}>
               <ActivityIndicator size="large" />
             </View>
-          ) : (
-            this.state.ranking.competition && (
-              <View style={{ flex: 1 }}>
-                <Text>
-                  {this.state.ranking.competition.name} : Matchweek{" "}
-                  {this.state.ranking.season.currentMatchday}
-                </Text>
-              </View>
-            )
-          )}
+          ) : null}
         </ImageBackground>
       </View>
     );
