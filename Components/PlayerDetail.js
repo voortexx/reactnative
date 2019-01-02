@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image, ImageBackground } from "react-native";
 import axios from "axios";
 import images from "../Helpers/avatars";
+import flags from "../Helpers/flags";
 import ageCalculation from "../Helpers/ageCalculation";
 import formatBirthDate from "../Helpers/formatBirthDate";
 
@@ -82,12 +83,26 @@ class PlayerDetail extends React.Component {
                   paddingRight: 10
                 }}
               >
-                <Text style={{ fontWeight: "bold", color: "#201f76" }}>
-                  Nationality
-                </Text>
-                <Text style={{ color: "#201f76" }}>
-                  {this.state.player.nationality}
-                </Text>
+                <Text style={{ color: "#201f76" }}>Nationality</Text>
+                <View style={{ flexDirection: "row" }}>
+                  {this.state.player.nationality && (
+                    <Image
+                      style={{ width: 16, height: 16, marginRight: 5 }}
+                      source={
+                        flags[
+                          this.state.player.nationality
+                            .split(" ")[0]
+                            .toLowerCase()
+                        ]
+                      }
+                    />
+                  )}
+                  <Text
+                    style={{ flex: 2, fontWeight: "bold", color: "#201f76" }}
+                  >
+                    {this.state.player.nationality}
+                  </Text>
+                </View>
               </View>
               <View
                 style={{
