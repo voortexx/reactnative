@@ -9,6 +9,7 @@ import Effectif from "./Components/Effectif";
 import PlayerDetail from "./Components/PlayerDetail";
 import Matches from "./Components/Matches";
 import Infos from "./Components/Infos";
+import Ranking from "./Components/Ranking";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const EffectifStack = createStackNavigator({
@@ -44,6 +45,15 @@ const ClubStack = createStackNavigator({
   }
 });
 
+const RankingStack = createStackNavigator({
+  Ranking: {
+    screen: Ranking,
+    navigationOptions: {
+      title: "Ranking"
+    }
+  }
+});
+
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
@@ -55,6 +65,7 @@ const TabNavigator = createBottomTabNavigator(
     Matches: {
       screen: MatchesStack
     },
+    Ranking: { screen: RankingStack },
     Infos: {
       screen: ClubStack
     }
@@ -72,6 +83,8 @@ const TabNavigator = createBottomTabNavigator(
           iconName = `md-list`;
         } else if (routeName === "Infos") {
           iconName = `ios-information-circle`;
+        } else if (routeName === "Ranking") {
+          iconName = `md-podium`;
         }
 
         return (
