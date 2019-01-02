@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, View, Text, Image, ImageBackground } from "react-native";
 import axios from "axios";
 import images from "../Helpers/avatars";
+import ageCalculation from "../Helpers/ageCalculation";
+import formatBirthDate from "../Helpers/formatBirthDate";
 
 class PlayerDetail extends React.Component {
   constructor(props) {
@@ -53,6 +55,66 @@ class PlayerDetail extends React.Component {
               </Text>
             </View>
           </View>
+          <View
+            style={{
+              margin: 10,
+              paddingTop: 20,
+              borderTopWidth: 3,
+              borderTopColor: "#201F76"
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "bold",
+                fontSize: 20,
+                flexWrap: "wrap",
+                color: "#201f76"
+              }}
+            >
+              Personal Details
+            </Text>
+            <View style={{ flexDirection: "row", marginTop: 5 }}>
+              <View
+                style={{
+                  flex: 1,
+                  borderRightWidth: 1,
+                  borderRightColor: "#dcdcdc",
+                  paddingRight: 10
+                }}
+              >
+                <Text style={{ fontWeight: "bold", color: "#201f76" }}>
+                  Nationality
+                </Text>
+                <Text style={{ color: "#201f76" }}>
+                  {this.state.player.nationality}
+                </Text>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  borderRightWidth: 1,
+                  borderRightColor: "#dcdcdc",
+                  paddingLeft: 10,
+                  paddingRight: 10
+                }}
+              >
+                <Text style={{ color: "#201f76" }}>Date of Birth</Text>
+                <Text style={{ fontWeight: "bold", color: "#201f76" }}>
+                  {formatBirthDate(this.state.player.birthdate)}
+                </Text>
+                <Text style={{ color: "#201f76" }}>Age</Text>
+                <Text style={{ fontWeight: "bold", color: "#201f76" }}>
+                  {ageCalculation(this.state.player.birthdate)}
+                </Text>
+              </View>
+              <View style={{ flex: 1, paddingLeft: 10, paddingRight: 10 }}>
+                <Text style={{ color: "#201f76" }}>Height</Text>
+                <Text style={{ fontWeight: "bold", color: "#201f76" }}>
+                  {this.state.player.height}cm
+                </Text>
+              </View>
+            </View>
+          </View>
         </ImageBackground>
       </View>
     );
@@ -73,7 +135,6 @@ const styles = StyleSheet.create({
     borderRadius: 80
   },
   content_container: {
-    flex: 1,
     flexDirection: "row",
     margin: 10
   },

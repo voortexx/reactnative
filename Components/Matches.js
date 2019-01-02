@@ -4,7 +4,8 @@ import {
   FlatList,
   View,
   ActivityIndicator,
-  Button
+  Button,
+  ImageBackground
 } from "react-native";
 import axios from "axios";
 import Match from "./Match";
@@ -41,37 +42,42 @@ class Matches extends React.Component {
   render() {
     return (
       <View style={styles.main_container}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-around",
-            marginTop: 20
-          }}
+        <ImageBackground
+          source={require("../Images/bg_player.png")}
+          style={{ width: "100%", height: "100%", flexDirection: "column" }}
         >
-          <Button
-            color={this.state.status === "FINISHED" ? "#FF0000" : "#dcdcdc"}
-            title="Results"
-            onPress={() => this.switchStatus("FINISHED")}
-          />
-          <Button
-            color={this.state.status === "SCHEDULED" ? "#FF0000" : "#dcdcdc"}
-            title="Fixtures"
-            onPress={() => this.switchStatus("SCHEDULED")}
-          />
-        </View>
-        {this.state.isLoading ? (
-          <View style={styles.loading_container}>
-            <ActivityIndicator size="large" />
-          </View>
-        ) : (
-          <View>
-            <FlatList
-              data={this.state.matches}
-              keyExtractor={item => item.id.toString()}
-              renderItem={({ item }) => <Match match={item} />}
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-around",
+              marginTop: 20
+            }}
+          >
+            <Button
+              color={this.state.status === "FINISHED" ? "#FF0000" : "#dcdcdc"}
+              title="Results"
+              onPress={() => this.switchStatus("FINISHED")}
+            />
+            <Button
+              color={this.state.status === "SCHEDULED" ? "#FF0000" : "#dcdcdc"}
+              title="Fixtures"
+              onPress={() => this.switchStatus("SCHEDULED")}
             />
           </View>
-        )}
+          {this.state.isLoading ? (
+            <View style={styles.loading_container}>
+              <ActivityIndicator size="large" />
+            </View>
+          ) : (
+            <View>
+              <FlatList
+                data={this.state.matches}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({ item }) => <Match match={item} />}
+              />
+            </View>
+          )}
+        </ImageBackground>
       </View>
     );
   }
@@ -80,7 +86,8 @@ class Matches extends React.Component {
 const styles = StyleSheet.create({
   main_container: {
     flex: 1,
-    flexDirection: "column"
+    flexDirection: "column",
+    backgroundColor: "#eaeaea"
   },
   loading_container: {
     position: "absolute",

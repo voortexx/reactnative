@@ -59,7 +59,7 @@ app.get("/players", (req, res) => {
 app.get("/players/:id", (req, res) => {
   const playerId = req.params.id;
   connection.query(
-    `SELECT players.id, name,firstname,shirt_number,poste_name,photo
+    `SELECT players.id, name,firstname,shirt_number,poste_name,photo, birthdate, nationality, height
       FROM players JOIN poste ON players.poste_id = poste.id WHERE players.id = ${playerId}`,
     (err, result) => {
       if (err) {
