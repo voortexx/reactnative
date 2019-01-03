@@ -4,7 +4,8 @@ import {
   View,
   TextInput,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Button
 } from "react-native";
 import axios from "axios";
 import Player from "./Player";
@@ -12,12 +13,18 @@ import Player from "./Player";
 class Effectif extends Component {
   constructor(props) {
     super(props);
-    this.state = { players: [], search: "", isLoading: false };
+    this.state = {
+      players: [],
+      search: "",
+      isLoading: false,
+      filterValue: null,
+      filter: []
+    };
   }
   componentDidMount() {
     this.setState({ isLoading: true });
     axios
-      .get(`http://192.168.1.23:3001/players`, {
+      .get(`http://10.0.0.155:3001/players`, {
         headers: {
           accept: "application/json"
         }
@@ -55,6 +62,13 @@ class Effectif extends Component {
           }));
   }
 
+  changeFilter(filter) {
+    this.setState({
+      filterValue: filter,
+      filter: this.state.players.filter(player => player.poste_name === filter)
+    });
+  }
+
   render() {
     const { navigation } = this.props;
     return (
@@ -65,8 +79,37 @@ class Effectif extends Component {
           onChangeText={text => this.searchPlayer(text)}
           onSubmitEditing={() => this.getPlayersBySearch()}
         />
+        <Button
+          title="Forward"
+          color="#841584"
+          onPress={() => this.changeFilter("Forward")}
+        />
+        <Button
+          title="Defense"
+          color="#841584"
+          onPress={() => this.changeFilter("Defense")}
+        />
+        <Button
+          title="Goalkeeper"
+          color="#841584"
+          onPress={() => this.changeFilter("Goalkeeper")}
+        />
+        <Button
+          title="Midfielder"
+          color="#841584"
+          onPress={() => this.changeFilter("Midfielder")}
+        />
+        <Button
+          title="All"
+          color="#841584"
+          onPress={() => this.changeFilter(null)}
+        />
         <FlatList
-          data={this.state.players}
+          data={
+            this.state.filter.length > 0
+              ? this.state.filter
+              : this.state.players
+          }
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
             <Player player={item} navigation={navigation} />

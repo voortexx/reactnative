@@ -14,7 +14,7 @@ class PlayerDetail extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://192.168.1.23:3001/players/${this.props.navigation.getParam(
+        `http://10.0.0.155:3001/players/${this.props.navigation.getParam(
           "playerId"
         )}`,
         {
