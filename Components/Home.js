@@ -17,7 +17,7 @@ class Home extends React.Component {
           style={{ flex: 2, alignItems: "center", justifyContent: "center" }}
         >
           <Text style={{ marginTop: 20, color: "#201F76" }}>
-            Made by <Text style={{ fontWeight: "bold" }}>Fabien Raymond</Text>
+            Made by <Text style={{ fontWeight: "bold" }}>Raymond</Text>
           </Text>
           <View style={{ flex: 1, flexDirection: "row" }}>
             <Text

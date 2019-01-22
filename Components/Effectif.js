@@ -43,7 +43,7 @@ class Effectif extends Component {
     this.state.search.length > 0
       ? (this.setState({ isLoading: true }),
         axios
-          .get(`http://192.168.1.23:3001/search/${this.state.search}`, {
+          .get(`http://10.0.0.155:3001/search/${this.state.search}`, {
             headers: {
               accept: "application/json"
             }
@@ -53,7 +53,7 @@ class Effectif extends Component {
           }))
       : (this.setState({ isLoading: true }),
         axios
-          .get(`http://192.168.1.23:3001/players`, {
+          .get(`http://10.0.0.155:3001/players`, {
             headers: {
               accept: "application/json"
             }
